@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+  <body>
+    <%- include('../partials/tablet-up.ejs') %>
+    <!-- Mobile -->
+    <div class="is-hidden-tablet">
+      <div class="hero is-fullheight has-background-grey-light">
+        <%- include('../partials/hero-head.ejs') %>
+        <div class="hero-body has-text-centered">
+          <div class="container">
+            <!-- Box Atas -->
+            <div class="box has-background-grey-lighter">
+              <div class="level">
+                <!-- Logo -->
+                <div class="level-item">
+                  <figure class="image is-96x96">
+                      <img width="96" height="96" alt="logo" src="/icons/icon-96x96.png">
+                  </figure>
+                </div>
+                <!-- END Logo -->
+                <!-- AppName -->
+                <div class="level-item p-0 m-0">
+                  <p class="title">
+                    <%= appNames.title %>
+                  </p>
+                </div>
+                <div class="level-item">
+                  <p class="subtitle">v <%= appNames.version %>
+                  </p>
+                </div>
+                <!-- END AppName -->
+
+              </div>
+            </div>
+            <!-- END Box Atas -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Mobile -->
+  </body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+  <link rel="stylesheet" type="text/css" href="/bulmaCR/bulma-divider/dist/bulma-divider.min.css">
+
+  <body>
+    <%- include('../partials/tablet-up.ejs') %>
+      <!-- Mobile -->
+      <div class="is-hidden-tablet">
+        <div class="hero is-fullheight has-background-grey-light">
+          <!-- Hero Head -->
+          <%- include('../partials/hero-head.ejs') %>
+            <!-- END Hero Head -->
+            <!-- Hero Body -->
+            <div class="hero-body has-text-centered">
+              <div class="container">
+                <!-- Box Atas -->
+                <div class="box has-background-grey-lighter">
+                  <div class="columns is-mobile is-vcentered">
+                    <div class="column is-narrow">
+                      <!-- Logo -->
+                      <figure class="image is-96x96">
+                        <a href="/">
+                          <img src="/icons/icon-96x96.png">
+                        </a>
+                      </figure>
+                      <!-- END Logo -->
+                    </div>
+                    <div class="column has-text-left">
+                      <!-- AppName -->
+                      <p class="title">
+                        <%= appNames.title %>
+                      </p>
+                      <p class="subtitle">v <%= appNames.version %>
+                      </p>
+                      <!-- END AppName -->
+                    </div>
+                  </div>
+                  <!-- Login Form -->
+                  <div class="box">
+                    <form>
+                      <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                          <input id="name" class="input" name="nama" type="text" placeholder="Nama">
+                          <span class="icon is-small is-left">
+                            <i class="material-icons-round">
+                              account_circle
+                            </i>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                          <input id="email" class="input" name="email" type="email" placeholder="Email">
+                          <span class="icon is-small is-left">
+                            <i class="material-icons-round">
+                              alternate_email
+                            </i>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="field">
+                        <p class="control has-icons-left">
+                          <input id="password" class="input" name="password" type="password" placeholder="Password">
+                          <span class="icon is-small is-left">
+                            <i class="material-icons-round">
+                              password
+                            </i>
+                          </span>
+                        </p>
+                      </div>
+                      <!-- Error Text -->
+                      <div id="errorText" class="subtitle is-6 has-text-danger"></div>
+                      <!-- END Error Text -->
+                      <div class="columns is-mobile is-gapless">
+                        <% formBtn.forEach(el=> { %>
+                          <div class="column">
+                            <button type="<%= el.type %>" class="button is-fullwidth <%= el.color %>" <%=el.isDisabled
+                              %> >
+                              <i class="material-icons-round mr-2">
+                                <%= el.icon %>
+                              </i>
+                              <span class="is-capitalized">
+                                <%= el.text %>
+                              </span>
+                            </button>
+                          </div>
+                          <% }) %>
+                      </div>
+                      <div class="divider">or</div>
+                      <a href="/login" class="button is-fullwidth is-primary">
+                        <i class="material-icons-round mr-2">
+                          login
+                        </i>
+                        <span class="is-capitalized">
+                          login
+                        </span>
+                      </a>
+                    </form>
+                  </div>
+                  <!-- END Login Form -->
+
+                </div>
+                <!-- END Box Atas -->
+              </div>
+            </div>
+            <!-- END Hero Body -->
+            <!-- Hero Foot -->
+            <%- include('../partials/hero-foot.ejs') %>
+              <!-- END Hero Foot -->
+        </div>
+      </div>
+      <!-- END Mobile -->
+      <%- include('../partials/scripts.ejs') %>
+        <script>
+          const form = document.querySelector('form')
+          const errorText = document.getElementById('errorText')
+
+          form.addEventListener('submit', loginUser)
+
+          async function loginUser(e) {
+            e.preventDefault()
+
+            let result = await fetch('/register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                name: form.nama.value,
+                email: form.email.value,
+                password: form.password.value
+              })
+            }).then(res => res.json())
+
+            if (result.status === 'ok') {
+              alert(result.message)
+              location.assign('/admin')
+              // window.location.replace('/login')
+            } else {
+              errorText.textContent = result.message
+              // alert(result.message)
+            }
+
+          }
+        </script>
+  </body>
+
+</html>

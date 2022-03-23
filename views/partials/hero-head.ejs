@@ -1,0 +1,31 @@
+<div class="hero-head">
+  <nav class="navbar">
+    <div class="navbar-brand" style="display: flex; flex-wrap: wrap; align-items: center;">
+      <!-- App icon + brand -->
+      <div class="navbar-item is-expanded is-block has-text-left">
+        <p class="title has-text-white" s>
+          <img class="mr-2" src="<%= appNames.icon['96'] %>" alt="Logo">
+          <%= appNames.title %>
+        </p>
+      </div>
+      <!-- END App icon + brand -->
+      <!-- Auth Button -->
+      <div class="navbar-item is-expanded is-block has-text-right">
+        <% if (user) { %>
+          <a href="/logout" class="button p-1 m-1 is-danger">
+            <i class="material-icons-round">
+              logout
+            </i>
+          </a>
+          <% } else { %>
+            <a href="/login" class="button p-1 m-1 is-primary">
+              <i class="material-icons-round">
+                login
+              </i>
+            </a>
+            <% } %>
+      </div>
+      <!-- END Auth Button -->
+    </div>
+  </nav>
+</div>

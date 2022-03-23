@@ -1,0 +1,27 @@
+<div class="hero-foot">
+  <div class="columns is-mobile">
+    <% if (typeof footBtn !=='undefined' ) { %>
+      <% footBtn.forEach(el=> { %>
+        <div class="column m-0 p-0">
+          <a href="<%= el.link %>" class="button is-fullwidth <%= el.color %>" <%=el.isDisabled %> >
+            <i class="material-icons-round mr-2">
+              <%= el.icon %>
+            </i>
+            <span class="is-capitalized">
+              <%= el.text %>
+            </span>
+          </a>
+        </div>
+        <% }) %>
+          <% } else { %>
+            <div class="column m-0 p-0">
+              <a href="/" class="button is-fullwidth is-warning is-light">
+                <i class="material-icons-round mr-2">
+                  arrow_back
+                </i>
+                <span class="is-capitalized">Beranda</span>
+              </a>
+            </div>
+            <% } %>
+  </div>
+</div>

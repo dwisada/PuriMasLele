@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+  <body>
+    <%- include('../partials/tablet-up.ejs') %>
+      <!-- Mobile -->
+      <div class="is-hidden-tablet">
+        <div class="hero is-fullheight has-background-grey-light">
+          <!-- Hero Body -->
+          <div class="hero-body has-text-centered px-2">
+            <div class="container">
+              <!-- Box navTitle -->
+              <div class="box has-background-grey-lighter mb-2">
+                <div class="level is-mobile">
+                  <div class="level-item">
+                    <p class="title has-text-centered is-capitalized">
+                      <% if (typeof navTitle !="undefined" ) { %>
+                        <%= navTitle.a %>
+                          <br>
+                          <%= navTitle.b %>
+                            <% } else { %>
+                              PuriMasLele
+                              <% } %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- END Box navTitle -->
+
+              <!-- Some Text -->
+              <div class="box px-2 has-background-grey-lighter has-text-centered">
+                <p class="subtitle is-6">Halaman akan dialihkan dalam
+                  <strong id="countDown" class="subtitle is-6"></strong> detik
+                </p>
+                <p class="help">klik <a href="/">disini</a> bila belum dialihkan</p>
+              </div>
+              <!--  END Some Text -->
+
+            </div>
+          </div>
+          <!-- END Hero Body -->
+        </div>
+      </div>
+      <!-- END Mobile -->
+      <%- include('../partials/scripts.ejs') %>
+        <script>
+          let count = 5;
+          document.getElementById('countDown').innerHTML = count;
+          setInterval(function () {
+            count--;
+            document.getElementById('countDown').innerHTML = count;
+            if (count == 0) {
+              location.assign('/')
+            }
+          }, 1000);
+        </script>
+  </body>
+
+</html>
