@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+	<link rel="stylesheet" type="text/css" href="/bulmaCR/bulma-collapsible/dist/css/bulma-collapsible.min.css">
+
+	<body>
+		<%- include('../partials/tablet-up.ejs') %>
+			<!-- Mobile -->
+			<div class="is-hidden-tablet">
+				<div class="hero is-fullheight has-background-grey-light">
+					<!-- Hero Head -->
+					<%- include('../partials/hero-head.ejs') %>
+						<!-- END Hero Head -->
+						<!-- Hero Body -->
+						<div class="hero-body has-text-centered px-2">
+							<div class="container">
+								<!-- Box navTitle -->
+								<div class="box has-background-grey-lighter mb-2">
+									<div class="level is-mobile">
+										<div class="level-left">
+											<p class="title has-text-left is-capitalized">
+												<% if (typeof navTitle !="undefined" ) { %>
+													<%= navTitle.a %>
+														<br>
+														<%= navTitle.b %>
+															<% } else { %>
+																PuriMasLele
+																<% } %>
+											</p>
+										</div>
+										<div class="level-right" style="flex-direction: column;">
+											<div class="level-item m-0">
+												<button class=" js-modal-trigger button is-info" data-target="modal-info">
+													<i class="material-icons-round">
+														info
+													</i>
+												</button>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!-- END Box navTitle -->
+
+								<!--  -->
+
+								<!--  -->
+
+
+								<!-- Menu Box Panen -->
+								<div class="box has-background-grey-lighter mb-2">
+									<div class="level is-mobile mb-2">
+										<div class="level-left">
+											<p class="title has-text-left is-capitalized">
+												panen
+											</p>
+										</div>
+										<div class="level-right" style="flex-direction: column;">
+											<div class="level-item m-0">
+												<button class=" js-modal-trigger button is-primary" data-target="modal-panen">
+													<i class="material-icons-round">
+														add
+													</i>
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="level-item">
+										<p class="title is-5 is-capitalized">Data Panen</p>
+									</div>
+									<div class="columns is-mobile is-multiline is-variable is-1 is-vcentered">
+										<% for( let i=0; i < 10; i++ ) { %>
+											<div class="column is-half">
+												<a href="#" class="box has-text-centered">
+													<p class="title title is-6 is-capitalized">
+														panen <%= i %>
+													</p>
+													<p class="subtitle is-6 is-capitalized">
+														26/03/2022
+													</p>
+												</a>
+											</div>
+											<% } %>
+									</div>
+								</div>
+								<!-- END Menu Box Panen -->
+								<!-- Menu Box Jenis -->
+								<div class="box has-background-grey-lighter mb-2">
+									<div class="level is-mobile">
+										<div class="level-left">
+											<p class="title has-text-left is-capitalized">
+												jenis
+											</p>
+										</div>
+										<div class="level-right" style="flex-direction: column;">
+											<div class="level-item m-0">
+												<button class=" js-modal-trigger button is-primary" data-target="modal-jenis">
+													<i class="material-icons-round">
+														add
+													</i>
+												</button>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!-- END Menu Box Jenis -->
+							</div>
+						</div>
+						<!-- END Hero Body -->
+						<!-- Hero Foot -->
+						<%- include('../partials/hero-foot.ejs') %>
+							<!-- END Hero Foot -->
+				</div>
+			</div>
+			<!-- END Mobile -->
+			<!-- Modal Info -->
+			<div id="modal-info" class="modal">
+				<div class="modal-background"></div>
+
+				<div class="modal-content">
+					<div class="container is-fluid">
+						<div class="box">
+							<p class="title has-text-centered">Legend</p>
+							<div class="columns is-multiline is-mobile has-text-centered">
+
+							</div>
+
+							<!-- Your content -->
+						</div>
+					</div>
+				</div>
+
+				<button class="modal-close is-large" aria-label="close"></button>
+			</div>
+			<!-- END Modal Info -->
+			<!-- Modal Panen -->
+			<div id="modal-panen" class="modal">
+				<div class="modal-background"></div>
+
+				<div class="modal-card">
+					<div class="container">
+						<header class="modal-card-head">
+							<p class="modal-card-title">Tambah Panen</p>
+							<button class="delete" aria-label="close"></button>
+						</header>
+						<section class="modal-card-body">
+							<form id="tambah">
+								<div class="field">
+									<label class="label">Prefix</label>
+									<div class="control is-expanded">
+										<div class="select is-fullwidth">
+											<select name="prefix" required>
+												<option selected hidden>- Prefix -</option>
+												<option value="kak">Kak</option>
+												<option value="bu">Bu</option>
+												<option value="pak">Pak</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">Nama</label>
+									<p class="control has-icons-left has-icons-right">
+										<input class="input" type="text" placeholder="Nama" name="name" minlength="3" required>
+										<span class="icon is-small is-left">
+											<i class="material-icons-round">
+												adb
+											</i>
+										</span>
+									</p>
+								</div>
+								<div class="field">
+									<label class="label">Status</label>
+									<div class="control is-expanded">
+										<div class="select is-multiple is-fullwidth">
+											<select id="status" name="status" multiple size="4" required>
+												<option value="pemodal">Pemodal</option>
+												<option value="sales">Sales</option>
+												<option value="vendor">Vendor</option>
+												<option value="pembeli">Pembeli</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</form>
+						</section>
+						<footer class="modal-card-foot" style="justify-content: space-between;">
+							<button form="tambah" type="reset" class="button">Reset</button>
+							<button form="tambah" type="submit" class="button is-success">Simpan</button>
+						</footer>
+					</div>
+				</div>
+
+				<button class="modal-close is-large" aria-label="close"></button>
+			</div>
+			<!-- END Modal Panen -->
+			<!-- Modal jenis -->
+			<div id="modal-jenis" class="modal">
+				<div class="modal-background"></div>
+
+				<div class="modal-card">
+					<div class="container">
+						<header class="modal-card-head">
+							<p class="modal-card-title">Tambah Jenis</p>
+							<button class="delete" aria-label="close"></button>
+						</header>
+						<section class="modal-card-body">
+
+						</section>
+						<footer class="modal-card-foot" style="justify-content: space-between;">
+							<button form="tambah" type="reset" class="button">Reset</button>
+							<button form="tambah" type="submit" class="button is-success">Simpan</button>
+						</footer>
+					</div>
+				</div>
+
+				<button class="modal-close is-large" aria-label="close"></button>
+			</div>
+			<!-- END Modal jenis -->
+			<%- include('../partials/scripts.ejs') %>
+				<script>
+					document.addEventListener('DOMContentLoaded', () => {
+						const formTambah = document.getElementById('tambah')
+						formTambah.addEventListener('submit', tambahOrang)
+
+						async function tambahOrang(e) {
+							e.preventDefault()
+							let select = formTambah.querySelector('#status')
+							let selected = [...select.selectedOptions].map(option => option.value)
+
+							let obj = {
+								prefix: formTambah.prefix.value,
+								name: formTambah.name.value,
+								status: selected
+							}
+
+							let result = await fetch('/admin/orang', {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(obj)
+							}).then(res => res.json())
+
+							if (result.status === 'ok') {
+								alert(result.message)
+								setTimeout(function () { window.location.reload(); }, 10)
+								// alert(JSON.stringify(result))
+								// location.assign('/admin')
+								// window.location.replace('/login')
+							} else {
+								// errorText.textContent = result.message
+								alert(result.message)
+							}
+						}
+
+
+						// FOR MODAL
+						// Functions to open and close a modal
+						function openModal($el) {
+							$el.classList.add('is-active');
+						}
+
+						function closeModal($el) {
+							$el.classList.remove('is-active');
+						}
+
+						function closeAllModals() {
+							(document.querySelectorAll('.modal') || []).forEach(($modal) => {
+								closeModal($modal);
+							});
+						}
+
+						// Add a click event on buttons to open a specific modal
+						(document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+							const modal = $trigger.dataset.target;
+							const $target = document.getElementById(modal);
+							$trigger.addEventListener('click', () => {
+								openModal($target);
+							});
+						});
+
+						// Add a click event on various child elements to close the parent modal
+						(document.querySelectorAll('.modal-close, .delete') || []).forEach(($close) => {
+							const $target = $close.closest('.modal');
+
+							$close.addEventListener('click', () => {
+								closeModal($target);
+							});
+						});
+
+						// Add a keyboard event to close all modals
+						document.addEventListener('keydown', (event) => {
+							const e = event || window.event;
+
+							if (e.keyCode === 27) { // Escape key
+								closeAllModals();
+							}
+						});
+					});
+				</script>
+	</body>
+
+</html>

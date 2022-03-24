@@ -29,9 +29,9 @@ router.route('/')
 // ORANG (LIST)
 router.route('/orang')
   .get(async (req, res) => {
-    const listOrang = await Orang.find().sort({ createdAt: -1 }).lean()
+    // Get all orang
+    const listOrang = await Orang.find().sort({ name: -1 }).lean()
     
-
     res.render('admin/orang', {
       navTitle: { a: 'Kelola data', b: 'Orang' },
       printIcon,
@@ -71,14 +71,14 @@ router.route('/orang/:id')
   })
 
 // IKAN
-// router.route('/ikan')
-//   .get((req, res) => {
-//     res.render('admin/ikan', {
-//       navTitle: { a: 'Kelola data', b: 'Ikan' },
-//       footBtn: [
-//         { text: 'kembali', link: '/admin', icon: 'arrow_back', color: 'is-warning', type: '', isDisabled: '' },
-//       ],
-//     })
-//   })
+router.route('/ikan')
+  .get((req, res) => {
+    res.render('admin/ikan', {
+      navTitle: { a: 'Kelola data', b: 'Ikan' },
+      footBtn: [
+        { text: 'kembali', link: '/admin', icon: 'arrow_back', color: 'is-warning', type: '', isDisabled: '' },
+      ],
+    })
+  })
 
 module.exports = router
